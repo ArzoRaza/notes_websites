@@ -11,6 +11,10 @@ app.get("/", function(req, res){
     res.render("index");
 });
 
+app.get("/profile/:username/:age", function(req, res){
+    res.send(req.params);
+})
+
 app.listen(3000, function(){
     console.log("it's running");
 });
