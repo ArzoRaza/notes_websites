@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require('path');
+const fs = require('fs')
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -11,10 +12,11 @@ app.get("/", function(req, res){
     res.render("index");
 });
 
-app.get("/profile/:username/:age", function(req, res){
-    res.send(req.params);
+app.get("/", function(req, res){
+    fs.readdir(`./files/`, function(err, files){
+        res.render("index", {files: files});
+
+    })
 })
 
-app.listen(3000, function(){
-    console.log("it's running");
-});
+app.listen(3000);
